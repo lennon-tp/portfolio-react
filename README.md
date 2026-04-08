@@ -1,16 +1,98 @@
-# React + Vite
+# Portfolio — Lennon TCHEN PAN
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Portfolio personnel développé avec React et Vite.
 
-Currently, two official plugins are available:
+## Stack technique
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- **React** (Vite)
+- **CSS Modules**
+- **react-icons**
+- **Web3Forms** (formulaire de contact)
 
-## React Compiler
+## Fonctionnalités
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- Mode clair / sombre (sauvegardé en localStorage)
+- Multilingue FR / EN (sauvegardé en localStorage)
+- Navigation smooth scroll avec détection de section active
+- Menu mobile avec overlay
+- Animation typewriter sur la section Home
+- Timeline animée au scroll (section Parcours)
+- Filtres par catégorie sur la section Projets
+- Formulaire de contact avec validation et envoi via Web3Forms
+- Responsive mobile-first
 
-## Expanding the ESLint configuration
+## Structure du projet
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+```
+src/
+├── components/
+│   ├── Header/
+│   ├── Home/
+│   ├── Education/
+│   ├── Certifications/
+│   ├── Projects/
+│   ├── Contact/
+│   └── Footer/
+├── context/
+│   ├── ThemeContext.jsx
+│   └── LanguageContext.jsx
+├── data/
+│   ├── timeline.js
+│   ├── certifications.js
+│   └── projects.js
+├── hooks/
+│   └── useTypewriter.js
+├── translations/
+│   └── index.js
+├── styles/
+│   └── global.css
+├── App.jsx
+└── main.jsx
+```
+
+## Installation
+
+```bash
+git clone https://github.com/lennon-tp/portfolio-react.git
+cd portfolio-react
+npm install
+npm run dev
+```
+
+## Configuration
+
+### Formulaire de contact
+
+Dans `src/components/Contact/Contact.jsx`, remplace la clé Web3Forms :
+
+```js
+const WEB3FORMS_KEY = "ta_cle_web3forms";
+```
+
+Obtenir une clé gratuite sur [web3forms.com](https://web3forms.com).
+
+### Images et CV
+
+- Images des projets : `public/images/`
+- CV : `public/cv/`
+- Drapeaux FR/EN : `public/flags/`
+
+## Scripts
+
+```bash
+npm run dev      # Serveur de développement
+npm run build    # Build de production
+npm run preview  # Prévisualisation du build
+```
+
+## Déploiement
+
+```bash
+npm run build
+```
+
+Le dossier `dist/` généré peut être déployé sur Vercel, Netlify ou GitHub Pages.
+
+---
+
+© 2026 Lennon TCHEN PAN
