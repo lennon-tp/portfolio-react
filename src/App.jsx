@@ -4,6 +4,7 @@ import Header from "./components/Header/Header";
 import Home from "./components/Home/Home";
 import Education from "./components/Education/Education";
 import Certifications from "./components/Certifications/Certifications";
+import Projects from "./components/Projects/Projects";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
           <Home />
           <Education />
           <Certifications />
+          <Projects />
         </main>
       </LanguageProvider>
     </ThemeProvider>
