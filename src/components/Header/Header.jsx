@@ -18,7 +18,6 @@ function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
 
-  // Ferme le menu mobile sur Escape
   useEffect(() => {
     const handleKey = (e) => {
       if (e.key === "Escape") setMenuOpen(false);
@@ -27,13 +26,13 @@ function Header() {
     return () => document.removeEventListener("keydown", handleKey);
   }, []);
 
-  // Bloque le scroll quand le menu mobile est ouvert
   useEffect(() => {
     document.body.style.overflow = menuOpen ? "hidden" : "";
-    return () => { document.body.style.overflow = ""; };
+    return () => {
+      document.body.style.overflow = "";
+    };
   }, [menuOpen]);
 
-  // Détecte la section active au scroll
   useEffect(() => {
     const sections = NAV_LINKS.map((l) => l.href.replace("#", ""));
 
@@ -67,17 +66,23 @@ function Header() {
   return (
     <header className={styles.header}>
       {/* Logo */}
-      <a href="#home" className={styles.logo} onClick={() => handleNavClick("#home")}>
+      <a
+        href="#home"
+        className={styles.logo}
+        onClick={(e) => { e.preventDefault(); handleNavClick("#home"); }}
+      >
         Lennon <span className={styles.logoAccent}>TCHEN PAN</span>
       </a>
 
       {/* Nav desktop */}
       <nav className={styles.navbar} aria-label="Navigation principale">
         {NAV_LINKS.map((link) => (
-          
+          <a
             key={link.key}
             href={link.href}
-            className={`${styles.navLink} ${activeSection === link.href.replace("#", "") ? styles.active : ""}`}
+            className={`${styles.navLink} ${
+              activeSection === link.href.replace("#", "") ? styles.active : ""
+            }`}
             onClick={(e) => { e.preventDefault(); handleNavClick(link.href); }}
           >
             {t.nav[link.key]}
@@ -91,11 +96,11 @@ function Header() {
         <button
           className={styles.langToggle}
           onClick={toggleLanguage}
-          aria-label={`Changer la langue (actuellement ${lang.toUpperCase()})`}
+          aria-label="Changer la langue"
         >
           <img
             src={`/flags/${lang === "fr" ? "en" : "fr"}.png`}
-            alt={lang === "fr" ? "Switch to English" : "Passer en Français"}
+            alt={lang === "fr" ? "Switch to English" : "Passer en Francais"}
             className={styles.flagIcon}
           />
           <span className={styles.langLabel}>
@@ -103,11 +108,11 @@ function Header() {
           </span>
         </button>
 
-        {/* Toggle thème */}
+        {/* Toggle theme */}
         <button
           className={styles.themeToggle}
           onClick={toggleTheme}
-          aria-label={`Passer en mode ${theme === "light" ? "sombre" : "clair"}`}
+          aria-label="Changer le theme"
         >
           <BsSun className={`${styles.themeIcon} ${styles.sunIcon}`} />
           <BsMoon className={`${styles.themeIcon} ${styles.moonIcon}`} />
@@ -134,10 +139,12 @@ function Header() {
         aria-label="Menu de navigation"
       >
         {NAV_LINKS.map((link) => (
-          
+          <a
             key={link.key}
             href={link.href}
-            className={`${styles.mobileLink} ${activeSection === link.href.replace("#", "") ? styles.active : ""}`}
+            className={`${styles.mobileLink} ${
+              activeSection === link.href.replace("#", "") ? styles.active : ""
+            }`}
             onClick={(e) => { e.preventDefault(); handleNavClick(link.href); }}
           >
             {t.nav[link.key]}
