@@ -1,0 +1,211 @@
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Manrope:wght@300;400;500;600;700;800&display=swap");
+
+/* ===== RESET ===== */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* ===== VARIABLES ===== */
+:root {
+  /* Couleurs light */
+  --bg-primary: #f5f5f0;
+  --bg-secondary: #eaeae4;
+  --bg-card: #ffffff;
+  --text-primary: #0e1a2b;
+  --text-secondary: #4a5568;
+  --text-muted: #718096;
+  --accent: #102e4a;
+  --accent-hover: #1a4a73;
+  --accent-light: rgba(16, 46, 74, 0.08);
+  --border: rgba(16, 46, 74, 0.12);
+  --shadow-sm: 0 2px 8px rgba(16, 46, 74, 0.08);
+  --shadow-md: 0 4px 24px rgba(16, 46, 74, 0.12);
+  --shadow-lg: 0 8px 40px rgba(16, 46, 74, 0.16);
+
+  /* Typographie */
+  --font-primary: "Manrope", sans-serif;
+  --font-heading: "Space Grotesk", sans-serif;
+
+  /* Espacements */
+  --section-padding: 9rem 10%;
+  --header-height: 72px;
+
+  /* Transitions */
+  --transition: 0.3s ease;
+  --transition-slow: 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* ===== DARK THEME ===== */
+[data-theme="dark"] {
+  --bg-primary: #0d1117;
+  --bg-secondary: #161b22;
+  --bg-card: #1c2128;
+  --text-primary: #e6edf3;
+  --text-secondary: #8b949e;
+  --text-muted: #6e7681;
+  --accent: #58a6ff;
+  --accent-hover: #79b8ff;
+  --accent-light: rgba(88, 166, 255, 0.1);
+  --border: rgba(255, 255, 255, 0.08);
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 24px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 8px 40px rgba(0, 0, 0, 0.5);
+}
+
+/* ===== BASE ===== */
+html {
+  font-size: 62.5%;
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
+body {
+  font-family: var(--font-primary);
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  font-size: 1.6rem;
+  line-height: 1.6;
+  transition: background-color var(--transition), color var(--transition);
+  overflow-x: hidden;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+ul {
+  list-style: none;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+  font-family: inherit;
+}
+
+/* ===== UTILITAIRES ===== */
+.section-padding {
+  padding: var(--section-padding);
+}
+
+.heading {
+  font-family: var(--font-heading);
+  font-size: 4rem;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 5rem;
+  color: var(--text-primary);
+  letter-spacing: -0.5px;
+}
+
+.heading span {
+  color: var(--accent);
+}
+
+/* ===== BOUTON ===== */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.8rem;
+  padding: 1.2rem 2.8rem;
+  border-radius: 8px;
+  font-size: 1.5rem;
+  font-weight: 600;
+  font-family: var(--font-primary);
+  transition: all var(--transition);
+  cursor: pointer;
+}
+
+.btn-primary {
+  background: var(--accent);
+  color: #ffffff;
+  border: 2px solid var(--accent);
+}
+
+.btn-primary:hover {
+  background: var(--accent-hover);
+  border-color: var(--accent-hover);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.btn-outline {
+  background: transparent;
+  color: var(--accent);
+  border: 2px solid var(--accent);
+}
+
+.btn-outline:hover {
+  background: var(--accent);
+  color: #ffffff;
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+/* ===== SCROLL ANIMATIONS ===== */
+.fade-up {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.fade-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ===== SCROLLBAR ===== */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--accent);
+  border-radius: 3px;
+}
+
+/* ===== SELECTION ===== */
+::selection {
+  background: var(--accent-light);
+  color: var(--accent);
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 1200px) {
+  :root {
+    --section-padding: 8rem 6%;
+  }
+}
+
+@media (max-width: 768px) {
+  html {
+    font-size: 56%;
+  }
+
+  :root {
+    --section-padding: 7rem 5%;
+  }
+
+  .heading {
+    font-size: 3.2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  html {
+    font-size: 52%;
+  }
+}
