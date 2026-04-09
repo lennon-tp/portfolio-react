@@ -1,6 +1,8 @@
 import { BsLinkedin, BsGithub, BsInstagram, BsTwitterX } from "react-icons/bs";
 import { useLanguage } from "../../context/LanguageContext";
+import { useTheme } from "../../context/ThemeContext";
 import useTypewriter from "../../hooks/useTypewriter";
+import Threads from "../UI/Threads/Threads";
 import styles from "./Home.module.css";
 
 const SOCIAL_LINKS = [
@@ -28,12 +30,31 @@ const SOCIAL_LINKS = [
 
 function Home() {
   const { t } = useLanguage();
+  const { theme } = useTheme();
   const displayedRole = useTypewriter(t.home.roles);
+
+  // Couleur des fils selon le theme
+  // Light : accent #102e4a -> rgb(16, 46, 74)
+  // Dark  : accent #58a6ff -> rgb(88, 166, 255)
+  const threadsColor =
+    theme === "dark"
+      ? [88 / 255, 166 / 255, 255 / 255]
+      : [16 / 255, 46 / 255, 74 / 255];
 
   return (
     <section id="home" className={styles.home}>
-      <div className={styles.content}>
+      {/* Arriere-plan anime */}
+      <div className={styles.threadsWrapper}>
+        <Threads
+          color={threadsColor}
+          amplitude={1.2}
+          distance={0.3}
+          enableMouseInteraction
+        />
+      </div>
 
+      {/* Contenu */}
+      <div className={styles.content}>
         <p className={styles.greeting}>{t.home.greeting}</p>
 
         <h1 className={styles.title}>
@@ -82,7 +103,6 @@ function Home() {
             {t.home.contact}
           </a>
         </div>
-
       </div>
     </section>
   );

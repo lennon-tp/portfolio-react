@@ -3,10 +3,31 @@
   display: flex;
   align-items: center;
   padding: calc(var(--header-height) + 4rem) 10% 6rem;
+  position: relative;
+  overflow: hidden;
 }
 
+/* ===== THREADS BACKGROUND ===== */
+.threadsWrapper {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  opacity: 0.55;
+  pointer-events: none;
+}
+
+[data-theme="dark"] .threadsWrapper {
+  opacity: 0.45;
+}
+
+/* ===== CONTENT au dessus du canvas ===== */
 .content {
+  position: relative;
+  z-index: 1;
   max-width: 720px;
+  pointer-events: auto;
 }
 
 /* ===== GREETING ===== */
@@ -153,5 +174,9 @@
   .description {
     margin-left: auto;
     margin-right: auto;
+  }
+
+  .threadsWrapper {
+    opacity: 0.3;
   }
 }
