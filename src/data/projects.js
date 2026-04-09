@@ -82,6 +82,17 @@ const projects = [
     status: "completed",
     github: "https://github.com/lennon-tp/memory",
   },
+  {
+    id: 8,
+    titleFr: "App de suivi des traitements",
+    titleEn: "Treatment Tracking App",
+    category: "professionnel",
+    technologies: ["Node.js", "Neutralino.js", "JavaScript"],
+    descFr: "Application desktop legere developpee avec Neutralino.js pour assurer le suivi des traitements effectues. L'operateur coche les etapes du traitement via des cases a cocher, chaque action est automatiquement horodatee. Les donnees peuvent etre exportees pour archivage ou reporting.",
+    descEn: "Lightweight desktop application built with Neutralino.js for tracking treatment operations. The operator checks off each treatment step using checkboxes, with every action automatically timestamped. Data can be exported for archiving or reporting purposes.",
+    image: "/images/app_suivie_project.png",
+    status: "completed",
+  },
 ];
 
 export default projects;
