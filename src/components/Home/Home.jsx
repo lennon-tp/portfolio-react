@@ -1,3 +1,4 @@
+import { useMemo } from "react";
 import { BsLinkedin, BsGithub, BsInstagram, BsTwitterX } from "react-icons/bs";
 import { useLanguage } from "../../context/LanguageContext";
 import { useTheme } from "../../context/ThemeContext";
@@ -33,13 +34,16 @@ function Home() {
   const { theme } = useTheme();
   const displayedRole = useTypewriter(t.home.roles);
 
-  // Couleur des fils selon le theme
-  // Light : accent #102e4a -> rgb(16, 46, 74)
-  // Dark  : accent #58a6ff -> rgb(88, 166, 255)
-  const threadsColor =
-    theme === "dark"
-      ? [88 / 255, 166 / 255, 255 / 255]
-      : [16 / 255, 46 / 255, 74 / 255];
+  // useMemo : la reference du tableau ne change que si theme change
+  // sans ca, chaque frappe du typewriter recreait un nouveau tableau
+  // et declenchait un re-mount du canvas WebGL -> clignotement
+  const threadsColor = useMemo(
+    () =>
+      theme === "dark"
+        ? [88 / 255, 166 / 255, 255 / 255]
+        : [16 / 255, 46 / 255, 74 / 255],
+    [theme]
+  );
 
   return (
     <section id="home" className={styles.home}>
