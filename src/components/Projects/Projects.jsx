@@ -16,12 +16,15 @@ function Projects() {
     { key: "professionnel", label: t.projects.filterPro },
   ];
 
-  const filtered = activeFilter === "all"
-    ? projects
-    : projects.filter((p) => p.category === activeFilter);
+  const filtered =
+    activeFilter === "all"
+      ? projects
+      : projects.filter((p) => p.category === activeFilter);
 
   const totalProjects = projects.length;
-  const completedProjects = projects.filter((p) => p.status === "completed").length;
+  const completedProjects = projects.filter(
+    (p) => p.status === "completed"
+  ).length;
 
   // Reset animation refs quand le filtre change
   useEffect(() => {
@@ -41,7 +44,7 @@ function Projects() {
     return () => clearTimeout(timeout);
   }, [activeFilter]);
 
-  // Intersection Observer pour l'entrée initiale
+  // Intersection Observer pour l'entree initiale
   useEffect(() => {
     const observers = [];
 
@@ -100,7 +103,9 @@ function Projects() {
         {FILTERS.map((f) => (
           <button
             key={f.key}
-            className={`${styles.filterBtn} ${activeFilter === f.key ? styles.active : ""}`}
+            className={`${styles.filterBtn} ${
+              activeFilter === f.key ? styles.active : ""
+            }`}
             onClick={() => setActiveFilter(f.key)}
           >
             {f.label}
@@ -162,15 +167,17 @@ function Projects() {
                 {lang === "fr" ? project.descFr : project.descEn}
               </p>
 
-              <a
-                href={project.github}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={styles.githubBtn}
-              >
-                <BsGithub />
-                GitHub
-              </a>
+              {project.github && (
+                <a
+                  href={project.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={styles.githubBtn}
+                >
+                  <BsGithub />
+                  GitHub
+                </a>
+              )}
             </div>
           </div>
         ))}
