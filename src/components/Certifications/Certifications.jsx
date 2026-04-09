@@ -11,19 +11,22 @@ const CERT_META = [
     icon: <BsShieldCheck />,
     image: "/images/secnum_cert.png",
     glowColor: "210 80 60",
-    colors: ["#102e4a", "#1a4a73", "#2a6090"],
+    colorsDark: ["#102e4a", "#1a4a73", "#2a6090"],
+    colorsLight: ["#1a4a73", "#2a6090", "#3a80b0"],
   },
   {
     icon: <BsFileEarmarkText />,
     image: "/images/voltaire_cert.png",
     glowColor: "220 70 55",
-    colors: ["#1a3a5c", "#2a5080", "#102e4a"],
+    colorsDark: ["#1a3a5c", "#2a5080", "#102e4a"],
+    colorsLight: ["#2a5080", "#3a6090", "#1a4a73"],
   },
   {
     icon: <BsLaptop />,
     image: "/images/pix_cert.png",
     glowColor: "215 75 60",
-    colors: ["#102e4a", "#2a6090", "#1a4a73"],
+    colorsDark: ["#102e4a", "#2a6090", "#1a4a73"],
+    colorsLight: ["#1a4a73", "#3a80b0", "#2a6090"],
   },
 ];
 
@@ -55,8 +58,7 @@ function Certifications() {
     return () => observers.forEach((o) => o.disconnect());
   }, []);
 
-  const getBgColor = () =>
-    theme === "dark" ? "#1c2128" : "#0e1a2b";
+  const bgColor = theme === "dark" ? "#1c2128" : "#f5f5f0";
 
   return (
     <section id="certifications" className={styles.certifications}>
@@ -65,6 +67,7 @@ function Certifications() {
       <div className={styles.grid}>
         {certifications.map((cert, index) => {
           const meta = CERT_META[index] ?? CERT_META[0];
+          const colors = theme === "dark" ? meta.colorsDark : meta.colorsLight;
 
           return (
             <div
@@ -78,24 +81,19 @@ function Certifications() {
                 glowIntensity={0.9}
                 edgeSensitivity={28}
                 coneSpread={22}
-                backgroundColor={getBgColor()}
+                backgroundColor={bgColor}
                 glowColor={meta.glowColor}
-                colors={meta.colors}
+                colors={colors}
                 fillOpacity={0.3}
               >
                 <div className={styles.cardInner}>
-                  {/* Image de fond avec blur */}
                   <img
                     src={meta.image}
                     alt=""
                     className={styles.cardBg}
                     aria-hidden="true"
                   />
-
-                  {/* Overlay gradient */}
                   <div className={styles.cardOverlay} />
-
-                  {/* Contenu */}
                   <div className={styles.cardContent}>
                     <div className={styles.iconWrapper}>
                       {meta.icon}
