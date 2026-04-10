@@ -93,6 +93,17 @@ const projects = [
     image: "/images/app_suivie_project.png",
     status: "completed",
   },
+  {
+    id: 9,
+    titleFr: "Dashboard Facturation",
+    titleEn: "Billing Dashboard",
+    category: "professionnel",
+    technologies: ["Express", "React", "Vite", "Material UI", "PostgreSQL"],
+    descFr: "Dashboard de facturation permettant de centraliser et visualiser en temps reel les differents etats de facturation, les volumes traites par client et les tendances sur des periodes definies. Concu pour faciliter le suivi financier et accelerer la prise de decision grace a des filtres dynamiques et des indicateurs cles.",
+    descEn: "Billing dashboard designed to centralize and visualize in real time the various invoicing statuses, volumes processed per client, and trends over defined periods. Built to streamline financial monitoring and support faster decision-making through dynamic filters and key performance indicators.",
+    image: "/images/dashboard_fact_project.png",
+    status: "inProgress",
+  },
 ];
 
 export default projects;
